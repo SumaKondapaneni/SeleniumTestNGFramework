@@ -47,12 +47,13 @@
 		</dependency>
 
 		<!-- WebDriver Manager (auto downloads drivers) -->
+		
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>5.7.0</version>
 		</dependency>
-		<!-- Log4j2 -->
+		<!-- Log4j2   for application logging-->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
