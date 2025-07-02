@@ -50,7 +50,7 @@ public class APITests {
     @Description("Create a new pet and retrieve it by ID to confirm it was saved correctly.")
     @Story("Create and Retrieve Pet")
     @Severity(SeverityLevel.CRITICAL)
-    public void createAndGetPetTest() {
+    public void createAndGetPetTest() throws InterruptedException {
         long petId = System.currentTimeMillis();
      // Create category object
         Category category = new Category();
@@ -79,6 +79,8 @@ public class APITests {
                 .body(pet)
                 .post("/pet");
         assertEquals(createResponse.statusCode(), 200, "Pet creation failed");
+        
+        Thread.sleep(1000); //add delay after pet creation to reduce test flakiness
 
         step("Retrieve the newly created pet by ID");
         Response getResponse = 
