@@ -54,13 +54,6 @@ public class LoginPage extends PageBase {
 	    return error;
 		
 	}
-    public List<WebElement> getPageTitle() {
-    	
-    	List<WebElement> tags = driver.findElements(By.tagName("p"));
-    	
-
-		return tags;
-        
-    }
+  
 	
 }

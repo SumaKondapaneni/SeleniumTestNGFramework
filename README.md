@@ -46,8 +46,12 @@ This setup is ideal for quickly validating functional flows with flexibility for
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+
+git clone https://github.com/SumaKondapaneni/SeleniumTestNGFramework.git
+
+Then, navigate into the project folder:
+
+cd SeleniumTestNGFramework
 ```
 
 ### 2. Install dependencies
@@ -75,12 +79,27 @@ Edit the `config.properties` or `testng.xml` file to update:
 ### Using Maven:
 
 ```bash
-mvn test
+
+mvn clean test
+
 ```
 
 ### From your IDE:
 - Right-click the test class or `testng.xml`
 - Run as TestNG Test
+
+
+### Generate and serve the Allure report:
+```bash
+mvn allure:serve
+
+This command will generate the Allure report from the test results and automatically open it in your default browser.
+
+If you want to just generate the report without opening the browser, use:
+
+mvn allure:report
+```
+
 
 ---
 
@@ -123,7 +142,7 @@ pom.xml                          # Maven build configuration
 ## 📊 Reporting
 
 - **TestNG** generates:
-  - HTML and XML reports under `test-output/`
+ 	 - HTML and XML reports under `test-output/`
 - **Allure Reports** (optional, for rich UI and insights):
   - Add Allure dependencies
   - Run:
@@ -153,19 +172,19 @@ See `pom.xml` for the complete list.
 
 ### UI Test Selection and Design
 
-For the UI tests, I focused on the key actions that a typical user would perform on the Sauce Demo app — like logging in, adding items to the cart, checking out, and logging out. These are the features that matter most to users and have the biggest impact on the overall experience.
+For the UI tests, I focused on the core user workflows within the Sauce Demo application — such as logging in, adding items to the cart, proceeding to checkout, and logging out. These represent the most critical features from a user’s perspective and significantly impact the overall user experience.
 
-I prioritized these tests to make sure the most important parts of the app are working smoothly. To keep my code clean and easy to maintain, I used the Page Object Model (POM) pattern. This helps me organize the UI elements and interactions in one place, so if the app’s UI changes, updating the tests is much simpler.
+To ensure robustness, I prioritized these tests so that the most essential functionalities are verified first. The test design follows the Page Object Model (POM) pattern, which promotes clean, modular, and maintainable code by encapsulating UI elements and interactions in dedicated classes. This approach simplifies updates whenever the UI changes.
 
-I also set up dependencies between tests. For example, you can’t add something to your cart unless you’re logged in, so the “add to cart” test runs only after a successful login. Plus, I run tests across different browsers like Chrome, Firefox, and Edge to catch any browser-specific issues early.
+Additionally, I implemented test dependencies to reflect real-world usage flows. For example, the test that adds items to the cart depends on a successful login test, preventing false failures caused by unmet preconditions. Finally, cross-browser testing is incorporated with Chrome, Firefox, and Edge to identify and address browser-specific issues early in the development cycle.
 
 ### API Test Selection and Design
 
-On the API side, I focused on the core actions you’d typically perform with the Petstore API — creating pets, retrieving pet details, updating info, and deleting records. These cover the basic “CRUD” operations that form the backbone of most APIs.
+The API testing strategy focuses on validating the core CRUD operations of the Petstore API, specifically the creation, retrieval, update, and deletion of pet records. These operations constitute the fundamental interactions necessary to verify the API’s correctness and reliability.
 
-To make my tests reliable and repeatable, I generate pet IDs dynamically. This means tests don’t clash with each other or depend on hardcoded data, making them more robust and easier to run in any order.
+To promote test independence and ensure repeatability, pet IDs are generated dynamically during test execution. This methodology mitigates the risk of data collisions and eliminates reliance on hardcoded values, thereby enabling tests to be executed in any order and supporting parallel test runs.
 
-I also check not just that the API responds, but that it responds correctly — with the right data and the expected structure. I even test for error cases, like what happens if you try to get a pet that doesn’t exist, to make sure the API handles mistakes gracefully.
+Validation extends beyond verifying HTTP response status codes to include thorough assertions on response payloads, ensuring the returned data conforms to the expected schema and values. Furthermore, negative test cases, such as attempting to retrieve a non-existent pet, are incorporated to assess the API’s error handling and resilience under invalid or edge-case scenarios.
 
 ### Using TestNG to Organize Tests
 
