@@ -2,7 +2,7 @@ package model;
 
 /**
  * @author Suma Kondapaneni
- * @created 29 Jun 2025
+ * @created 01 Jul 2025
  */
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class Pet {
 	    private List<String> photoUrls;
 	    private List<Tag> tags;
 
-	    // Getters & Setters
+		// Getters & Setters
 	    public long getId() { return id; }
 	    public void setId(long id) { this.id = id; }
 
